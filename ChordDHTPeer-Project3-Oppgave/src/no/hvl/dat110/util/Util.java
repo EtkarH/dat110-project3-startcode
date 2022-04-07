@@ -42,15 +42,20 @@ public class Util {
 		// a formula to check whether an id falls withiuppern the set {lower, upper} using the address size as our bound (modulos operation)
 		// it modifies 'upper' and 'id' when lower >  e.g. set (6, 2) in mod 10 = {6, 7, 8, 9, 0, 1, 2}
 
-		//if (lower <= id <= upper){
-		//return true;
-		//} else {
-		//	return false;
-		//}
 
 		// implement: read the descriptions above
 		boolean cond = false;
 
+		if(lower.compareTo(upper) > 0){
+			upper = upper.add(size);
+			if(id.compareTo(lower) < 0){
+				id = id.add(size);
+			}
+		}
+
+		if(id.compareTo(lower) >= 0 && id.compareTo(upper) <= 0){
+			cond = true;
+		}
 		
 		return cond;
 	}

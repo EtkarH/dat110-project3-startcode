@@ -26,24 +26,25 @@ public class Hash {
 		}
 	}
 	
-	public static BigInteger hashOf(String entity) {		
-		
+	public static BigInteger hashOf(String entity) {
+
 		// Task: Hash a given string using MD5 and return the result as a BigInteger.
-		
+
 		// we use MD5 with 128 bits digest
-		
+
 		// compute the hash of the input 'entity'
-		int integer =  entity.hashCode();
-		ByteBuffer bb = ByteBuffer.allocate(4);
-		bb.putInt(integer);
+
+		byte [] big = md.digest(entity.getBytes());
 
 		// convert the hash into hex format
-		String hexString = toHex(bb.array());
+
 		// convert the hex into BigInteger
-		hashint = new BigInteger(hexString, 16);
-		
+
+		String str = toHex(big);
+		hashint = new BigInteger(str, 16);
+
 		// return the BigInteger
-		
+
 		return hashint;
 	}
 	
