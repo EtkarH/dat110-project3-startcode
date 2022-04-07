@@ -22,6 +22,7 @@ import no.hvl.dat110.middleware.Message;
 import no.hvl.dat110.rpc.interfaces.NodeInterface;
 import no.hvl.dat110.util.Hash;
 
+
 public class FileManager {
 	
 	private BigInteger[] replicafiles;							// array stores replicated files for distribution to matching nodes
@@ -55,6 +56,12 @@ public class FileManager {
 	public void createReplicaFiles() {
 	 	
 		// implement
+
+		for (int index = 0; index < numReplicas; index++) {
+			String newName = filename + index;
+			BigInteger hash = Hash.hashOf(filename);
+			replicafiles[index] = hash;
+		}
 		
 		// set a loop where size = numReplicas
 		
@@ -73,7 +80,7 @@ public class FileManager {
      */
     public int distributeReplicastoPeers() throws RemoteException {
     	int counter = 0;
-    	
+
     	// Task1: Given a filename, make replicas and distribute them to all active peers such that: pred < replica <= peer
     	
     	// Task2: assign a replica as the primary for this file. Hint, see the slide (project 3) on Canvas
